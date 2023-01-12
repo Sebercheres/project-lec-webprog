@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Type extends Model
 {
     use HasFactory;
-    protected $timestamps = false;
+    public $timestamps = false;
     protected $guarded = ['id'];
+
+    public function article() {
+        return $this->hasMany(Article::class);
+    }
 }

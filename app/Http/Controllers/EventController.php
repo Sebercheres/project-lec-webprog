@@ -14,7 +14,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        return view('event.index', [
+            'events' => Event::paginate(4)
+        ]);
     }
 
     /**
@@ -24,7 +26,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('event.create');
     }
 
     /**
@@ -35,7 +37,23 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+        ]);
+
+        $event = new Event();
+        $event->title = $request->title;
+        $event->description = $request->description;
+
+        $imageName = time().'.'.$request->image->extension();
+        $request->image->move(public_path('storage/event'), $imageName);
+        $event->image = $imageName;
+        $event->user_id = '1';
+
+        $event->save();
+        return redirect()->route('events.index');
     }
 
     /**
@@ -44,10 +62,12 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show(string $id)
     {
-        //
-    }
+        $event = Event::findorFail($id);
+        return view('event.show',compact('event'));
+    } // tau kan di event semuanya masih static !!! - awe
+    //iy emg blm ada datanya kan? ud bisa kok liat diatas pake namanya $events tinggal for loop aja - awe
 
     /**
      * Show the form for editing the specified resource.
@@ -55,9 +75,12 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event)
+    public function edit(string $id)
     {
-        //
+        // mo ngapain di? salah narooo harusnya di show
+        return view('event.edit', [
+            'event' => Event::find($id)
+        ]);
     }
 
     /**
@@ -67,9 +90,32 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, string $id)
     {
         //
+        $event = Event::find($id);
+
+        $request->validate(
+            [
+                'title' => 'required',
+                'description' => 'required',
+                'image' => 'required',
+                'image' => 'file',
+            ]
+        );
+
+        $event->title = $request->title;
+        $event->description = $request->description;
+
+        if ($request->image != null) {
+            unlink(public_path('/storage/event/' . $event->image));
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('/storage/event'), $imageName);
+            $event->image = $imageName;
+        }
+        $event->user_id = '1';
+        $event->save();
+        return redirect()->route('events.index');
     }
 
     /**
@@ -78,8 +124,12 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy(string $id)
     {
         //
+        $event = Event::findorFail($id);
+        unlink(public_path('storage/event/'.$event->image));
+        $event->delete();
+        return redirect()->route('events.index');
     }
 }

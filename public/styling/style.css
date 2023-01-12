@@ -1,0 +1,375 @@
+.width_30px{
+    width: 30px;
+    height: 30px;
+}
+
+.padding_bottom_min_40px{
+    margin-bottom: -20px;
+}
+
+.margin_top_min_40px{
+    margin-top: -40px;
+}
+
+.width_500px{
+    width: 760px;
+}
+
+.width_500px_2{
+    width:500px
+}
+
+.width_80px{
+    width: 80px;
+    height : 80px;
+}
+
+.font_size_80{
+    font-size: 80px;
+}
+
+.height_40px{
+    height :40px;
+}
+
+.width_100px{
+    width: 100px;
+}
+
+.width_max{
+    width: 100%;
+}
+
+.height_800px{
+    height:500px;
+}
+
+.width_80px_2{
+    width: 80px;
+}
+
+.relative_right{
+    position: absolute;
+    float: right;
+    right: 36px;
+    bottom: 10px;
+}
+
+.hidden_over{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.margin_x_200px{
+    margin-top: 50px;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.height_400px{
+    height: 400px;
+}
+
+.d_fx{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.margin_x-axis_200px{
+    padding-left: 250px;
+    padding-right: 250px;
+}
+
+.w_donation_cov{
+    width: 500px;
+}
+
+.height_200px{
+    height: 240px;
+}
+
+
+.height_30px{
+    height: 30px;
+}
+
+.height_200px{
+    height: 200px;
+}
+
+.height_60px{
+    width: 60px;
+}
+
+.margin_top_min_170px{
+    margin-top:-170px ;
+}
+
+.margin_bottom_min_170px{
+    margin-bottom:-170px ;
+}
+
+.margin_top_min_70px{
+    margin-top: -70px;
+}
+
+.margin_bottom_min_70px{
+margin-bottom: -70px;
+}
+
+.height_70px{
+    height: 70px;
+}
+
+.btn_width_160px{
+    width: 160px;
+}
+
+.btn_height_60px{
+    height: 60px;
+}
+
+.height_60px{
+    height: 60px;
+}
+
+.right_margin_60px{
+    margin-left: 80px;
+}
+
+.margin_top_50px{
+    margin-top: 50px;
+}
+
+.margin_top_min_10px{
+    margin-top: -10px;
+}
+
+.hist_title{
+    margin-left: 300px;
+    margin: auto;
+}
+
+.hist_date{
+    margin-left: 250px;
+    margin: auto;
+}
+
+.hist_amn{
+    /* position:absolute;
+    right: 0; */
+    margin-right: 300px;
+    margin: auto;
+}
+
+.hist_act{
+    /* position:absolute;
+    right: 0; */
+    margin-right: 550px;
+    margin: auto;
+}
+
+.margin_left_100px{
+    margin-left: 100px;
+}
+
+.margin_left_120px{
+    margin-left: 160px;
+}
+
+.padding_top_160px{
+    padding-top: 160px;
+}
+
+.width_720px{
+    width: 720px;
+}
+
+.width_300px{
+    width: 300px;
+}
+
+.width_height_80px{
+    width: 200px;
+    height: 200px;
+}
+
+.width_240px{
+    width: 240px;
+}
+
+.width_480px{
+    width: 480px;
+}
+
+.width_400px{
+    width: 400px;
+}
+
+.margin_left_158px{
+    margin-left: 158px;
+}
+
+.w-30{
+    width: 30%;
+}
+
+.btn_width_130px{
+    width: 130px;
+}
+
+.width_180px{
+    width: 180px;
+}
+
+.margin_top_min_2px{
+    margin-top: -1px;
+}
+
+.width_883-5px{
+    width: 883.5px;
+}
+
+.text_shadow{
+    text-shadow: 2px 2px black;
+}
+
+.margin_left_min_13-5px{
+    margin-left: -13.5px;
+}
+
+.image_fit_cover{
+    object-fit: fill;
+}
+
+.image_fit_cover2{
+    object-fit: cover;
+}
+
+.width_120px{
+    width:  120px;
+}
+
+.ear_navbar{
+    position: absolute;
+    left: 155px;
+}
+.end_navbar{
+    position: absolute;
+    right: 155px;
+}
+
+.height_300px{
+    height: 600px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+buttonr {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+  }
+
+  buttonr:hover {
+    opacity:1;
+  }
+
+  /* Float cancel and delete buttons and add an equal width */
+  .cancelbtn, .deletebtn {
+    float: left;
+    width: 50%;
+  }
+
+  /* Add a color to the cancel button */
+  .cancelbtn {
+    background-color: #ccc;
+    color: black;
+  }
+
+  /* Add a color to the delete button */
+  .deletebtn {
+    background-color: #f44336;
+  }
+
+  /* Add padding and center-align text to the container */
+  .container {
+    padding: 16px;
+    text-align: center;
+  }
+
+  /* The Modal (background) */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgba(105, 105, 105, 0.7);
+    padding-top: 50px;
+  }
+
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: white;
+    margin: 1% auto 3.7% auto; /* 5% from the top, 15% from the bottom and centered */
+    /* border: 1px solid #888; */
+    width: 800px;
+    height: 500px;
+  }
+
+  /* Style the horizontal ruler */
+  hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+  }
+
+  /* The Modal Close Button (x) */
+  .close {
+    position: absolute;
+    right: 3px;
+    top:-18px;
+    font-size: 40px;
+    font-weight: bold;
+    color:gray;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #f44336;
+    cursor: pointer;
+  }
+
+  /* Clear floats */
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  /* Change styles for cancel button and delete button on extra small screens */
+  @media screen and (max-width: 300px) {
+    .cancelbtn, .deletebtn {
+       width: 100%;
+    }
+  }
+
+
+.square_350px{
+    height: 360px;
+    width: 360px;
+}
+
+.width_200px{
+    width: 380px;
+}

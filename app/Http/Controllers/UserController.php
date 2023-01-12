@@ -4,82 +4,87 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        return view('registration.login');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function index1()
     {
-        //
+        return view('registration.register');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function register(Request $req){
+        $req->validate([
+            'username' => 'required|min:5',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|required_with:password_confirmation|same:password_confirmation',
+        ]);
+        $user = new User();
+        $user->username = $req->username;
+        $user->email = $req->email;
+        $user->password = bcrypt($req->password);
+        $user->save();
+        return redirect('/login');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
+    public function profile(Request $req){
+        return view('profile', ['user'=>$req->session()->get('user')]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
-    {
-        //
+    public function update(Request $req){
+        $req->validate([
+            'username' => 'required|min:4',
+            'email' => 'required|email',
+            'dob' => 'required',
+            'phone' => 'required',
+        ]);
+        $user = User::find($req->id);
+
+        $user->username = $req->username;
+        $user->email = $req->email;
+        $user->date_of_birth = $req->dob;
+        $user->phone = $req->phone;
+        $user->save();
+        $req->session()->put('user', $user);
+        return redirect('/profile');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
-    {
-        //
+    public function login(Request $req){
+        $req->validate([
+            'email'=>'required',
+            'password'=>'required',
+        ]);
+        $creds = $req->only('email', 'password');
+        $user = User::where(['email'=>$req->email])->first();
+
+        if(Auth::attempt($creds)){
+            if($req->remember==null){
+
+            }
+            else{
+                setcookie('email', $req->email, time()+( 2 * 60 * 60));
+                setcookie('password', $req->password, time()+( 2 * 60 * 60));
+            }
+            $req->session()->put('user', $user);
+            Auth::login($user);
+            return redirect('/');
+        }
+        return back()->withErrors([
+            'credential' => "Email or Password Doesn't Match",
+        ]);
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
+    public function logout(){
+        Session::flush();
+        Session::forget('user');
+        Auth::logout();
+        return redirect('/login');
     }
 }
